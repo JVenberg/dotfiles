@@ -6,13 +6,17 @@ zshrc() {
     echo "-----------------------------------------------------------"
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     echo "==========================================================="
-    echo "                cloning autojump                     "
-    echo "-----------------------------------------------------------"
-    git clone https://github.com/wting/autojump.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/autojump
-    echo "==========================================================="
     echo "                cloning powerlevel10k                      "
     echo "-----------------------------------------------------------"
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+    echo "==========================================================="
+    echo "                   cloning autojump                        "
+    echo "-----------------------------------------------------------"
+    git clone https://github.com/wting/autojump.git
+    echo "==========================================================="
+    echo "                  installing autojump                      "
+    echo "-----------------------------------------------------------"
+    ./autojump/install.py
     echo "==========================================================="
     echo "                  Import p10k.zsh                             "
     echo "-----------------------------------------------------------"
