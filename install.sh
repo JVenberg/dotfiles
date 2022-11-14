@@ -9,6 +9,9 @@ zshrc() {
     echo "                cloning powerlevel10k                      "
     echo "-----------------------------------------------------------"
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+    curl -o $HOME/git-completion.zsh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh
+
     echo "==========================================================="
     echo "                   cloning autojump                        "
     echo "-----------------------------------------------------------"
@@ -17,6 +20,7 @@ zshrc() {
     echo "                  installing autojump                      "
     echo "-----------------------------------------------------------"
     ./autojump/install.py
+
     echo "==========================================================="
     echo "                  Import p10k.zsh                             "
     echo "-----------------------------------------------------------"

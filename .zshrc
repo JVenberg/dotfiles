@@ -33,8 +33,8 @@ git config --global pull.rebase true
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Bash completion
-test -f ~/.git-completion.bash && . $_
+# Git completion
+test -f ~/.git-completion.zsh && . $_
 
 # kubectl configure_eks_cluster Command
 export KUBECONFIG=~/.kube/rover-config
