@@ -27,6 +27,11 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# pyenv setup
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 # Set git rebase default
 git config --global pull.rebase true
 
@@ -37,8 +42,8 @@ git config --global pull.rebase true
 test -f ~/.git-completion.zsh && . $_
 
 # Load aliases
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [[ -f \/workspaces/web/profile ]]; then
+  . \/workspaces/web/profile
 fi
 
 # NVM loading
