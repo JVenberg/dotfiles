@@ -22,6 +22,20 @@ zshrc() {
     ./autojump/install.py
 
     echo "==========================================================="
+    echo "                    cloning roverform                      "
+    echo "-----------------------------------------------------------"
+    git clone https://github.com/roverdotcom/roverform.git $HOME/roverform
+    echo "==========================================================="
+    echo "                   installing roverform                    "
+    echo "-----------------------------------------------------------"
+    ln -s $HOME/roverform/bin/roverform /usr/local/bin/roverform
+
+    echo "==========================================================="
+    echo "                    cloning pyenv                      "
+    echo "-----------------------------------------------------------"
+    git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
+
+    echo "==========================================================="
     echo "                  Import p10k.zsh                             "
     echo "-----------------------------------------------------------"
     cp .p10k.zsh $HOME/.p10k.zsh
