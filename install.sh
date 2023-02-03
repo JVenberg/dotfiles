@@ -28,7 +28,7 @@ zshrc() {
     echo "==========================================================="
     echo "                   installing roverform                    "
     echo "-----------------------------------------------------------"
-    ln -s $HOME/roverform/bin/roverform /usr/local/bin/roverform
+    sudo ln -s $HOME/roverform/bin/roverform /usr/local/bin/roverform
 
     echo "==========================================================="
     echo "                    cloning pyenv                      "
