@@ -74,3 +74,6 @@ function configure_eks_cluster() {
     --name $cluster \
     --profile $aws_account
 }
+
+# Make .aws directory to store credentials
+mkdir -p ~/.aws
