@@ -47,4 +47,5 @@ zshrc() {
 
 zshrc
 
-cat ~/.jackrc >> ~/.bashrc
+cp .jackrc $HOME/.jackrc
+echo "source $HOME/.jackrc" >> $HOME/.bashrc
