@@ -46,3 +46,5 @@ zshrc() {
 }
 
 zshrc
+
+cat ~/.jackrc >> ~/.bashrc
