@@ -51,30 +51,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# kubectl configure_eks_cluster Command
-export KUBECONFIG=~/.kube/rover-config
-function configure_eks_cluster() {
-  local cluster=$1
-  local aws_account=$(cut -d '-' -f 1 <<< "$cluster")
-
-  # Check for awscli
-  which aws > /dev/null
-  if [ $? -ne 0 ]; then
-    echo "Please install aws cli (https://aws.amazon.com/cli/)"
-    return
-  fi
-
-  aws eks update-kubeconfig \
-    --alias $cluster \
-    --name $cluster \
-    --profile $aws_account
-
-  KUBECONFIG=$HOME/.kube/$cluster aws eks update-kubeconfig \
-    --alias $cluster \
-    --name $cluster \
-    --profile $aws_account
-}
-
 # Write AWS Saml Credentials from Github Secret
 function write_aws_saml_credentials {
     if [[ ! -z "${ROVER_AWS_SAML_HELPER_CREDENTIALS:-}" ]]; then
