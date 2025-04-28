@@ -49,3 +49,4 @@ zshrc
 
 cp .jackrc $HOME/.jackrc
 echo "source $HOME/.jackrc" >> $HOME/.bashrc
+echo "source $HOME/.jackrc" >> $HOME/.zshrc

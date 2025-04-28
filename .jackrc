@@ -1,1 +1,15 @@
 alias hello="echo '👋'"
+
+# Write AWS Saml Credentials from Github Secret
+function write_aws_saml_credentials() {
+  if [[ -n "${ROVER_AWS_SAML_HELPER_CREDENTIALS:-}" ]]; then
+    mkdir -p "$HOME/.aws"
+    echo "$ROVER_AWS_SAML_HELPER_CREDENTIALS" | base64 -d >"$HOME/.aws/credentials"
+    chmod u=rw,go= "$HOME/.aws/credentials"
+  fi
+}
+
+write_aws_saml_credentials
+
+# Set git rebase default
+git config --global pull.rebase true
