@@ -1,5 +1,33 @@
 #!/bin/bash
 
+# Install nvm, Node.js (for npx), and uv (for uvx)
+echo "==========================================================="
+echo "                  Installing nvm                             "
+echo "-----------------------------------------------------------"
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+echo "==========================================================="
+echo "          Installing Node.js (LTS) via nvm                 "
+echo "-----------------------------------------------------------"
+nvm install --lts
+nvm alias default 'lts/*' # Set default node version
+
+echo "==========================================================="
+echo "                    Installing uv                            "
+echo "-----------------------------------------------------------"
+curl -LsSf https://astral.sh/uv/install.sh | sh
+echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> $HOME/.zshrc # Add uv to PATH for zsh
+echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> $HOME/.bashrc # Add uv to PATH for bash
+# Source the profile files to make uv available in the current script session if needed,
+# though typically these are for new shell sessions.
+# For Codespaces, these PATH updates will be picked up on new terminal creation.
+# We also need to ensure .cargo/bin is in the PATH for the rest of this script if uv is used immediately.
+export PATH="$HOME/.cargo/bin:$PATH"
+
+
 zshrc() {
     echo "==========================================================="
     echo "             cloning zsh-autosuggestions                   "
