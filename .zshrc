@@ -31,15 +31,8 @@ source $ZSH/oh-my-zsh.sh
 # Git completion
 test -f ~/.git-completion.zsh && . $_
 
-# Load aliases
-if [[ -f \/workspaces/web/profile ]]; then
-  . \/workspaces/web/profile
-fi
-
-# NVM loading
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # VSCode integration
 [[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
+
+# Load custom configurations
+[[ -f ~/.jackrc ]] && source ~/.jackrc

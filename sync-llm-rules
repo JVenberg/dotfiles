@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# LLM Rules Deployment Script
+# Deploys rules via symlinks to all supported AI coding tools
+
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+deploy_llm_rules() {
+    echo "==========================================================="
+    echo "              Deploying LLM Rules                          "
+    echo "-----------------------------------------------------------"
+
+    # Define tool directories (compatible with bash 3.2+)
+    TOOL_NAMES=("Kilo Code" "Roo Code" "Cline")
+    TOOL_DIRS=(
+        "$HOME/.kilocode/rules"
+        "$HOME/.roo/rules"
+        "$HOME/Documents/Cline/Rules"
+    )
+
+    # Backup existing rules if they exist
+    for tool_dir in "${TOOL_DIRS[@]}"; do
+        if [ -e "$tool_dir" ] && [ ! -L "$tool_dir" ]; then
+            backup_dir="${tool_dir}.backup.$(date +%Y%m%d_%H%M%S)"
+            echo "Backing up existing rules: $tool_dir -> $backup_dir"
+            mv "$tool_dir" "$backup_dir"
+        fi
+    done
+
+    # Create symlinks for all tools
+    for i in "${!TOOL_NAMES[@]}"; do
+        tool_name="${TOOL_NAMES[$i]}"
+        tool_dir="${TOOL_DIRS[$i]}"
+
+        # Create parent directory
+        mkdir -p "$(dirname "$tool_dir")"
+
+        # Remove old symlink if exists
+        [ -L "$tool_dir" ] && rm "$tool_dir"
+
+        # Create new symlink
+        ln -sf "$DOTFILES_DIR/llm-rules" "$tool_dir"
+
+        echo "  ✓ $tool_name: $tool_dir -> $DOTFILES_DIR/llm-rules"
+    done
+
+    echo "✓ LLM rules deployed via symlinks"
+}
+
+# Run deployment
+deploy_llm_rules
