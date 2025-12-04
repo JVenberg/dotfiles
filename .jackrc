@@ -27,3 +27,12 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+git config --global alias.start '!f() { \
+    if [ -z "$1" ]; then echo "Usage: git start <branch-name>"; return 1; fi; \
+    if [ -n "$(git status --porcelain)" ]; then git stash; stashed=1; fi; \
+    git fetch origin; \
+    git checkout -b "$1" origin/HEAD; \
+    if [ "$stashed" = "1" ]; then git stash pop; fi; \
+}; f'
+
+git config --global alias.up '!git fetch origin && git rebase origin/HEAD'
